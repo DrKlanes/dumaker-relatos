@@ -286,18 +286,19 @@ a:hover, a:focus-visible { text-decoration-thickness: 2px; }
   color: var(--title);
 }
 
-/* Canción de El Peso: estrofa en cursiva, centrada DENTRO de su columna (en flujo,
-   sin salirse: el destacado lo da el estilo, no el layout). No se parte por el salto. */
+/* Canción de El Peso: tres estrofas en cursiva, centradas DENTRO de su columna
+   (en flujo, sin salirse). Cada estrofa entera (break-inside: avoid) pero pueden
+   romper ENTRE sí en el salto de columna, para no dejar huecos al pie. */
 .relato__verse {
   break-inside: avoid;
   -webkit-column-break-inside: avoid;
   text-align: center;
   hyphens: none;
-  margin: 1.5rem 0;
-  line-height: 1.9;
-  color: var(--text);
+  font-style: italic;
+  color: var(--strong);
+  line-height: 1.85;
+  margin: 0 0 1.1rem;
 }
-.relato__verse em { font-style: italic; color: var(--strong); }
 
 /* Coda climática: el remate final como ÚLTIMO PÁRRAFO en negrita dentro de su
    columna — cierre natural del relato, en su sitio, sin descolgarse a todo el ancho. */
