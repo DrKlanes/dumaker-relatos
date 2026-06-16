@@ -37,10 +37,25 @@
     if (el) { e.preventDefault(); activate(el); }
   });
 
-  /* ----- 2. Aparición al hacer scroll (solo si se acepta movimiento) ----- */
+  /* ----- 2. Botón «volver arriba» (aparece al bajar) -------------------- */
   var motionOK = !window.matchMedia ||
     window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
 
+  var toTop = document.querySelector('.to-top');
+  if (toTop) {
+    toTop.hidden = false;
+    var onScroll = function () {
+      if (window.scrollY > window.innerHeight * 0.9) toTop.classList.add('is-shown');
+      else toTop.classList.remove('is-shown');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: motionOK ? 'smooth' : 'auto' });
+    });
+  }
+
+  /* ----- 3. Aparición al hacer scroll (solo si se acepta movimiento) ----- */
   if (motionOK && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('js-reveal');
     var io = new IntersectionObserver(function (entries) {

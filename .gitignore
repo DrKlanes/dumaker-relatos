@@ -7,6 +7,9 @@ _posters_raw/
 # Script local de optimización de imágenes (no forma parte del sitio)
 _build_assets.py
 
+# Verificación local (cotejo de textos) — no forma parte del sitio
+_verify/
+
 # CNAME: preparado pero NO activado todavía. Si se sube, GitHub fija el dominio
 # personalizado y redirige la URL github.io (que no resolvería hasta tener DNS).
 # Se activa (quitar esta línea + commit) cuando el DNS de cdmon esté puesto.

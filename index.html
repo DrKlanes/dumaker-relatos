@@ -35,17 +35,22 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
   <a class="skip-link" href="#relatos">Saltar al contenido</a>
 
   <!-- ===================== CABECERA / HERO ===================== -->
   <header class="hero">
-    <div class="hero__frame reveal">
+    <div class="hero__frame">
       <div class="hero__brand">
         <h1 class="hero__title"><span class="hero__t1">Relatos</span><span class="hero__t2">Aciagos</span></h1>
-        <img class="hero__skull" src="assets/calavera.png" alt="" width="1127" height="900" decoding="async">
+        <img class="hero__skull" src="assets/calavera.png" alt="" width="1002" height="800" decoding="async">
       </div>
       <p class="hero__sub">Siniestras historias ilustradas, locutadas y debidamente amortajadas para su completo disfrute</p>
+      <nav class="hero__menu" aria-label="Índice de relatos">
+        <a href="#aliento">Aliento</a>
+        <a href="#el-peso">El Peso</a>
+        <a href="#vino-muerto">Vino Muerto</a>
+        <a href="#el-aljibe">El Aljibe</a>
+      </nav>
     </div>
     <a class="hero__scroll" href="#relatos" aria-label="Bajar a los relatos">&#8964;</a>
   </header>
@@ -89,7 +94,7 @@
         </div>
 
         <figure class="relato__illu">
-          <img src="assets/ilu-aliento.jpg" width="1200" height="465" loading="lazy" decoding="async"
+          <img src="assets/ilu-aliento.png" width="1200" height="465" loading="lazy" decoding="async"
                alt="Unos ojos de mirada triste asoman entre las ventanas con barrotes de un semisótano en penumbra.">
         </figure>
 
@@ -146,7 +151,7 @@
         </div>
 
         <figure class="relato__illu">
-          <img src="assets/ilu-el-peso.jpg" width="1200" height="850" loading="lazy" decoding="async"
+          <img src="assets/ilu-el-peso.png" width="1200" height="850" loading="lazy" decoding="async"
                alt="Un niño con gafas de visión nocturna recorta su silueta sobre un fondo rojo intenso.">
         </figure>
 
@@ -247,7 +252,7 @@
           <p>Asómate, no tengas miedo. Inclínate más, hombre.</p>
           <p>No sabes cómo ansío ver una cara.</p>
           <p>Ven, encuéntrame dentro del aljibe.</p>
-          <p class="relato__final"><strong>Maravíllate del abismo.</strong></p>
+          <p>Maravíllate del abismo.</p>
         </div>
 
         <figure class="relato__illu">
@@ -263,10 +268,14 @@
 
   <!-- ===================== PIE ===================== -->
   <footer class="foot">
-    <img class="foot__skull" src="assets/calavera.png" alt="" width="1127" height="900" loading="lazy" decoding="async">
+    <img class="foot__skull" src="assets/calavera.png" alt="" width="1002" height="800" loading="lazy" decoding="async">
     <p class="foot__brand">Relatos Aciagos · By <b>Dumaker</b></p>
     <p class="foot__meta">Relatos e ilustraciones por Dumaker y Alabamakiller · Locución de Jorge Gállego Loren · <a href="https://dumaker.com">dumaker.com</a></p>
   </footer>
+
+  <button class="to-top" type="button" aria-label="Volver arriba" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+  </button>
 
   <script src="app.js" defer></script>
 </body>
