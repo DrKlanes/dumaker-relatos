@@ -1,0 +1,449 @@
+/* ============================================================================
+   RELATOS ACIAGOS — hoja de estilos
+   Terror editorial-gótico · una paleta propia por relato (la firma del sitio).
+   Vanilla, sin build step. Hermano técnico de «Horripilantes Rimas».
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. Fuentes autoalojadas (subconjunto latino, woff2)
+   ------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'New Rocker';
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url('assets/fonts/new-rocker-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Old Standard TT';
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url('assets/fonts/old-standard-tt-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Old Standard TT';
+  font-style: italic; font-weight: 400; font-display: swap;
+  src: url('assets/fonts/old-standard-tt-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Old Standard TT';
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url('assets/fonts/old-standard-tt-700.woff2') format('woff2');
+}
+
+/* ---------------------------------------------------------------------------
+   2. Tokens globales
+   ------------------------------------------------------------------------- */
+:root {
+  --green:  rgb(12,101,87);     /* verde esmeralda — firma del hero        */
+  --cream:  #f1e3da;            /* rosa palo / crema del hero               */
+
+  --display: 'New Rocker', 'UnifrakturCook', 'Old English Text MT', serif;
+  --body:    'Old Standard TT', Georgia, 'Times New Roman', serif;
+
+  --content: 56rem;            /* ancho del contenido de cada relato        */
+  --gap:     clamp(1.75rem, 4vw, 3.25rem);
+
+  /* Valores por defecto (los relatos los redefinen con su paleta) */
+  --bg:     #0a0a0a;
+  --title:  #e7e0d4;
+  --accent: #b9af9d;
+  --border: rgba(255,255,255,0.12);
+  --text:   #626262;           /* gris medio «amortajado»                   */
+  --strong: #f0e9dd;
+}
+
+/* ---------------------------------------------------------------------------
+   3. Base
+   ------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: #0a0a0a;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; text-decoration: underline; text-underline-offset: 2px;
+    text-decoration-thickness: 1px; text-decoration-color: currentColor; }
+a:hover, a:focus-visible { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+/* Salto al contenido — oculto salvo al recibir foco con teclado */
+.skip-link {
+  position: absolute; left: 50%; top: -100px; transform: translateX(-50%);
+  z-index: 10000; padding: 0.7rem 1.2rem;
+  background: var(--green); color: #fff; text-decoration: none;
+  font-family: var(--body); letter-spacing: 0.05em;
+  border-radius: 0 0 6px 6px; transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; }
+
+/* ---------------------------------------------------------------------------
+   4. Grano de película (sutil, global, estático)
+   ------------------------------------------------------------------------- */
+.grain {
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none; opacity: 0.035; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------------------
+   5. Cabecera / hero — verde esmeralda sobre crema, enmarcado
+   ------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: clamp(2.5rem, 7vh, 6rem) clamp(1rem, 4vw, 3rem);
+  background:
+    radial-gradient(120% 80% at 50% 0%, #f6ece4, var(--cream) 70%);
+  border-left:  clamp(8px, 1.6vw, 18px) solid var(--green);
+  border-right: clamp(8px, 1.6vw, 18px) solid var(--green);
+  color: var(--green);
+}
+
+.hero__frame {
+  max-width: 46rem;
+  padding: clamp(1.75rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+  border: 4px double var(--green);
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(12,101,87,0.18);
+}
+
+.hero__brand { position: relative; display: inline-block; }
+
+.hero__title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 0.84;
+  color: var(--green);
+  text-shadow: 0 2px 0 rgba(12,101,87,0.10);
+}
+.hero__t1, .hero__t2 { display: block; }
+.hero__t1 { font-size: clamp(2.9rem, 13vw, 7.5rem); }
+.hero__t2 { font-size: clamp(3.4rem, 15.5vw, 8.75rem); margin-top: 0.02em; }
+
+/* Calavera atravesada por la flecha, integrada en la parte alta del logotipo */
+.hero__skull {
+  position: absolute;
+  width: clamp(120px, 24vw, 230px);
+  height: auto;
+  top: clamp(-2.4rem, -7vw, -3.6rem);
+  right: clamp(-2.6rem, -8vw, -4.4rem);
+  filter: drop-shadow(0 6px 14px rgba(12,101,87,0.28));
+  pointer-events: none;
+}
+
+.hero__sub {
+  margin: clamp(1.6rem, 4vh, 2.4rem) auto 0;
+  max-width: 34rem;
+  font-family: var(--body);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  line-height: 1.7;
+  font-size: clamp(0.66rem, 1.5vw, 0.84rem);
+  color: var(--green);
+}
+
+.hero__scroll {
+  position: absolute; bottom: clamp(1rem, 4vh, 2.5rem); left: 50%;
+  transform: translateX(-50%);
+  color: var(--green); font-size: 1.6rem; line-height: 1;
+  text-decoration: none; opacity: 0.7;
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.55; }
+  50%      { transform: translate(-50%, 8px); opacity: 1; }
+}
+
+/* ---------------------------------------------------------------------------
+   6. Bloque de relato — MISMO esqueleto para los cuatro
+   ------------------------------------------------------------------------- */
+.relato {
+  background: var(--bg);
+  color: var(--text);
+  padding: clamp(3.5rem, 8vh, 6.5rem) clamp(1rem, 4vw, 3rem);
+  border-left:  clamp(8px, 1.6vw, 18px) solid var(--border);
+  border-right: clamp(8px, 1.6vw, 18px) solid var(--border);
+}
+
+.relato__inner {
+  max-width: var(--content);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.relato__title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  text-align: center;
+  line-height: 0.9;
+  color: var(--title);
+  font-size: clamp(3rem, 10vw, 6.25rem);
+  text-shadow: 0 2px 18px rgba(0,0,0,0.28);
+}
+
+.relato__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem auto clamp(1.75rem, 4vh, 2.5rem);
+  padding: 0.4rem 0.95rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: clamp(0.62rem, 1.4vw, 0.74rem);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  opacity: 0.92;
+}
+.ic-head { width: 1.05em; height: 1.05em; flex: 0 0 auto; }
+
+/* --- Vídeo (facade 16:9) --- */
+.relato__media { width: 100%; max-width: 48rem; margin: 0 auto; }
+
+/* --- Texto a dos columnas --- */
+.relato__text {
+  width: 100%;
+  margin: clamp(2rem, 5vh, 3rem) auto 0;
+  columns: 2;
+  column-gap: clamp(1.75rem, 4vw, 3rem);
+  text-align: justify;
+  hyphens: auto;
+  font-size: clamp(1.02rem, 1.35vw, 1.18rem);
+  line-height: 1.72;
+}
+.relato__text p { margin: 0 0 1.05rem; }
+.relato__text p:first-child::first-letter {
+  font-family: var(--display);
+  font-size: 3.1em;
+  line-height: 0.78;
+  float: left;
+  margin: 0.04em 0.08em 0 0;
+  color: var(--title);
+}
+.relato__verse, .relato__final {
+  column-span: all;
+  text-align: center;
+  hyphens: none;
+}
+.relato__verse {
+  margin: 1.5rem auto;
+  max-width: 28rem;
+  line-height: 1.85;
+  color: var(--text);
+}
+.relato__verse em { font-style: italic; color: var(--strong); }
+.relato__final {
+  margin: 1.75rem auto 0;
+  max-width: 34rem;
+  font-size: 1.12em;
+}
+.relato__final strong { color: var(--strong); font-weight: 700; }
+
+/* --- Ilustración protagonista --- */
+.relato__illu { width: 100%; max-width: 44rem; margin: clamp(2.25rem, 5vh, 3.25rem) auto 0; }
+.relato__illu img {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+}
+
+/* --- Separador «Gracias» entre dos líneas --- */
+.relato__thanks {
+  width: 100%; max-width: 30rem;
+  display: flex; align-items: center; gap: 1.1rem;
+  margin: clamp(2.5rem, 6vh, 3.5rem) auto clamp(1rem, 2.5vh, 1.5rem);
+  color: var(--accent);
+}
+.relato__thanks::before, .relato__thanks::after {
+  content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.6;
+}
+.relato__thanks span {
+  font-family: var(--body); font-style: italic;
+  font-size: 1.35rem; letter-spacing: 0.02em;
+}
+
+/* --- Créditos en versalitas --- */
+.relato__credit {
+  margin: 0; text-align: center;
+  max-width: 36rem;
+  font-variant: all-small-caps;
+  letter-spacing: 0.1em;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+/* ---------------------------------------------------------------------------
+   7. PALETAS POR RELATO — la firma del sitio
+   ------------------------------------------------------------------------- */
+/* Aliento — azul cobalto intenso, título blanco */
+.relato--aliento {
+  --bg: radial-gradient(120% 90% at 50% 18%, #1f63e0 0%, #1450c2 52%, #0e3ea0 100%);
+  --title:  #ffffff;
+  --accent: #a9c5ff;
+  --border: #0c3690;
+  --text:   #c5d3ee;
+  --strong: #ffffff;
+}
+/* El Peso — crema/hueso, título granate, bordes rojos */
+.relato--peso {
+  --bg:     radial-gradient(120% 90% at 50% 12%, #f0e7d6 0%, #e7ddc9 100%);
+  --title:  rgb(155,0,24);
+  --accent: rgb(155,0,24);
+  --border: rgb(155,0,24);
+  --text:   #5e5a55;
+  --strong: #3a211f;
+}
+/* Vino Muerto — negro muy oscuro, título turquesa, bordes verdosos */
+.relato--vino {
+  --bg:     radial-gradient(120% 85% at 50% 8%, #0a1714 0%, #060e0c 60%, #040807 100%);
+  --title:  rgb(0,160,150);
+  --accent: #1fa99c;
+  --border: rgb(12,94,84);
+  --text:   #8ea39d;
+  --strong: #d8ebe6;
+}
+/* El Aljibe — negro, título rojo coral, bordes granate */
+.relato--aljibe {
+  --bg:     radial-gradient(120% 85% at 50% 8%, #160a0a 0%, #0a0606 60%, #060404 100%);
+  --title:  rgb(231,90,87);
+  --accent: #e7706d;
+  --border: #5c1614;
+  --text:   #948b87;
+  --strong: #efdad8;
+}
+
+/* ---------------------------------------------------------------------------
+   8. Facade de vídeo (carga diferida de YouTube) — se adapta a cada paleta
+   ------------------------------------------------------------------------- */
+.video {
+  position: relative; display: block; width: 100%;
+  aspect-ratio: 16 / 9; margin: 0; padding: 0;
+  border: 3px solid var(--accent);
+  border-radius: 4px; background: #000;
+  cursor: pointer; overflow: hidden; color: var(--accent);
+  box-shadow: 0 16px 44px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,0,0,0.35);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.video:hover, .video:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 30px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.video__poster {
+  position: absolute; inset: 0;
+  background-image: var(--poster);
+  background-size: cover; background-position: center;
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+.video:hover .video__poster,
+.video:focus-visible .video__poster { transform: scale(1.04); }
+.video::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 55% at 50% 46%, rgba(0,0,0,0.04), rgba(0,0,0,0.42));
+}
+
+.video__play { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; }
+.video__icon {
+  width: clamp(58px, 13%, 84px); height: auto;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.7));
+  transition: transform 0.4s ease;
+}
+.video__icon .ring { fill: color-mix(in srgb, var(--accent) 92%, black); }
+.video__icon .tri  { fill: #fff; }
+.video:hover .video__icon, .video:focus-visible .video__icon { transform: scale(1.12); }
+
+.video__label {
+  position: absolute; z-index: 1; left: 0; right: 0; bottom: 0;
+  padding: 1.5rem 1rem 0.8rem;
+  font-family: var(--body); font-size: 0.74rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #f2ece2; text-align: center;
+  background: linear-gradient(transparent, rgba(0,0,0,0.72));
+}
+
+/* Reproduciendo: el iframe ocupa el mismo marco 16:9 (cero salto) */
+.video--playing { cursor: default; }
+.video--playing:hover { transform: none; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* ---------------------------------------------------------------------------
+   9. Pie
+   ------------------------------------------------------------------------- */
+.foot {
+  text-align: center;
+  padding: clamp(2.5rem, 7vh, 4rem) 1.25rem clamp(3rem, 8vh, 4.5rem);
+  background: radial-gradient(120% 80% at 50% 100%, #0d0b0b, #060505 70%);
+  border-top: 1px solid rgba(231,90,87,0.18);
+  color: #8d8682;
+}
+.foot__skull {
+  width: clamp(120px, 22vw, 200px);
+  margin: 0 auto 1.4rem;
+  opacity: 0.8;
+}
+.foot p { margin: 0.3rem 0; }
+.foot__brand {
+  font-family: var(--display); font-weight: 400;
+  letter-spacing: 0.04em; font-size: 1.4rem; color: #cdb7b5;
+}
+.foot__brand b { color: rgb(231,90,87); font-weight: 400; }
+.foot__meta { font-family: var(--body); font-style: italic; font-size: 0.9rem; color: #8d8682; }
+.foot__meta a { color: rgb(231,90,87); }
+
+/* ---------------------------------------------------------------------------
+   10. Reveal al hacer scroll (solo si el usuario acepta movimiento)
+   ------------------------------------------------------------------------- */
+.js-reveal .reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  will-change: opacity, transform;
+}
+.js-reveal .reveal.is-visible { opacity: 1; transform: none; }
+
+/* ---------------------------------------------------------------------------
+   11. Responsive — móvil a una sola columna
+   ------------------------------------------------------------------------- */
+@media (max-width: 720px) {
+  .relato__text { columns: 1; text-align: left; }
+  .relato__verse, .relato__final { max-width: none; }
+  .hero__skull {
+    width: clamp(96px, 26vw, 150px);
+    top: clamp(-1.6rem, -6vw, -2.2rem);
+    right: clamp(-1rem, -4vw, -1.8rem);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   12. Accesibilidad — movimiento reducido
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero__scroll { animation: none; }
+  *, *::before, *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
