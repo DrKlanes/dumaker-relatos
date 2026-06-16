@@ -286,34 +286,25 @@ a:hover, a:focus-visible { text-decoration-thickness: 2px; }
   color: var(--title);
 }
 
-/* Canción de El Peso: interludio centrado a todo el ancho */
+/* Canción de El Peso: estrofa en cursiva, centrada DENTRO de su columna (en flujo,
+   sin salirse: el destacado lo da el estilo, no el layout). No se parte por el salto. */
 .relato__verse {
-  column-span: all;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
   text-align: center;
   hyphens: none;
-  margin: 1.6rem auto;
-  max-width: 28rem;
+  margin: 1.5rem 0;
   line-height: 1.9;
   color: var(--text);
 }
 .relato__verse em { font-style: italic; color: var(--strong); }
 
-/* Coda climática: el remate final, a todo el ancho, PEGADO al relato, nunca descolgado */
+/* Coda climática: el remate final como ÚLTIMO PÁRRAFO en negrita dentro de su
+   columna — cierre natural del relato, en su sitio, sin descolgarse a todo el ancho. */
 .relato__final {
-  column-span: all;
-  text-align: center;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
   hyphens: none;
-  margin: clamp(1.4rem, 3vh, 2rem) auto 0;
-  max-width: 34rem;
-  font-size: 1.16em;
-  line-height: 1.6;
-}
-.relato__final::before {
-  content: ""; display: block;
-  width: 2.6rem; height: 2px;
-  margin: 0 auto 1rem;
-  background: var(--accent);
-  opacity: 0.65;
 }
 .relato__final strong { color: var(--strong); font-weight: 700; }
 
@@ -508,7 +499,6 @@ a:hover, a:focus-visible { text-decoration-thickness: 2px; }
    ------------------------------------------------------------------------- */
 @media (max-width: 720px) {
   .relato__text { columns: 1; text-align: left; }
-  .relato__verse, .relato__final { max-width: none; }
   .relato::before { inset: 8px; }
   .hero__skull {
     width: clamp(96px, 26vw, 150px);
